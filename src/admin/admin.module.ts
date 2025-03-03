@@ -33,7 +33,7 @@ const adminjs = new AdminJS({
         },
         adminJsOptions: {
           rootPath: '/admin',
-          assetsCDN: 'https://serverless-adminjs.vercel.app/public/', // 마지막에 /를 꼭 붙여야함
+          assetsCDN: process.env.NODE_ENV === 'production' ? 'https://nestjs-adminjs-serverless.vercel.app/public/' : 'http://localhost:3000/public/', // 마지막에 /를 꼭 붙여야함
           settings: {
             defaultPerPage: 300,
           },
