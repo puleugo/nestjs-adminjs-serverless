@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "assets": ["./public/**","./node_modules/swagger-ui-dist/**", "./node_modules/adminjs/lib/frontend/assets/scripts/**"]
+  }
+}

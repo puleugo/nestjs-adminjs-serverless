@@ -1,0 +1,50 @@
+name: Deploy Backend on Vercel
+#on:
+#  push:
+#    branches:
+#      - main
+#  workflow_dispatch:
+#  workflow_call:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: .
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-backend-node-modules
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-node20-backend-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node20-backend-
+      - name: Install dependencies
+
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        run: yarn install --ignore-platform
+      - name: Install Global Dependencies (Vercel CLI, Yarn)
+        run: npm i -g vercel@latest yarn
+      - name: Show Installed dependencies
+        run: yarn list --depth=0
+      - name: Check node_module size
+        run: du -sh ./node_modules
+      - name: Compile Typescript
+        run: yarn build
+      - name: Pull Vercel Environment Information
+        run: npx vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: npx vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: npx vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN }} --yes
