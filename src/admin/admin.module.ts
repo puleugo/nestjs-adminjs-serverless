@@ -37,25 +37,25 @@ const adminjs = new AdminJS({
           settings: {
             defaultPerPage: 300,
           },
-          resources: [
-            {
-              resource: YourEntity,
-              options: {
-                listProperties: ['id', 'name', 'deleted'],
-                editProperties: ['id', 'name', 'deleted'],
-                showProperties: ['id', 'name', 'deleted'],
-                properties: {
-                  id: {
-                    isRequired: true,
-                  },
-                  name: {
-                    isRequired: true,
-                  },
-                },
-              },
-
-            },
-          ]
+          // resources: [
+          //   {
+          //     resource: YourEntity,
+          //     options: {
+          //       listProperties: ['id', 'name', 'deleted'],
+          //       editProperties: ['id', 'name', 'deleted'],
+          //       showProperties: ['id', 'name', 'deleted'],
+          //       properties: {
+          //         id: {
+          //           isRequired: true,
+          //         },
+          //         name: {
+          //           isRequired: true,
+          //         },
+          //       },
+          //     },
+          //
+          //   },
+          // ]
         },
       }),
     }),

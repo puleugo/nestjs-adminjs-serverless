@@ -26,7 +26,7 @@ export const dataSourceConfig: DataSourceOptions = {
       isGlobal: true,
     }),
     AdminModule,
-    TypeOrmModule.forRoot(dataSourceConfig)
+    // TypeOrmModule.forRoot(dataSourceConfig)
   ],
 })
 export class AppModule {}
