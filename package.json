@@ -58,6 +58,11 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3"
   },
+  "resolutions": {
+    "@tiptap/core": "2.0.3",
+    "@tiptap/pm": "2.0.3",
+    "@tiptap/starter-kit": "2.0.3"
+  },
   "jest": {
     "moduleFileExtensions": [
       "js",
